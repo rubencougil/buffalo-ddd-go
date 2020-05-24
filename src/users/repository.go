@@ -31,7 +31,7 @@ func (r PostgresRepository) Get(ID uuid.UUID) (user *User, err error) {
 	}
 	return &User{
 		ID:   userModel.ID,
-		Name: "mike",
+		Name: userModel.Name,
 	}, nil
 }
 
@@ -43,7 +43,7 @@ func (r PostgresRepository) GetAll() (users []*User, err error) {
 	for _, userModel := range *usersModel {
 		users = append(users, &User{
 			ID:   userModel.ID,
-			Name: "mike",
+			Name: userModel.Name,
 		})
 	}
 	return users, nil
