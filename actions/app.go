@@ -2,16 +2,15 @@ package actions
 
 import (
 	"github.com/gobuffalo/buffalo"
-	"github.com/gobuffalo/envy"
-	forcessl "github.com/gobuffalo/mw-forcessl"
-	paramlogger "github.com/gobuffalo/mw-paramlogger"
-	"github.com/unrolled/secure"
-
 	"github.com/gobuffalo/buffalo-pop/v2/pop/popmw"
+	"github.com/gobuffalo/envy"
 	csrf "github.com/gobuffalo/mw-csrf"
+	forcessl "github.com/gobuffalo/mw-forcessl"
 	i18n "github.com/gobuffalo/mw-i18n"
+	paramlogger "github.com/gobuffalo/mw-paramlogger"
 	"github.com/gobuffalo/packr/v2"
 	"github.com/rubencougil/coke/models"
+	"github.com/unrolled/secure"
 )
 
 // ENV is used to help switch settings based on where the
@@ -59,8 +58,9 @@ func App() *buffalo.App {
 		app.Use(translations())
 
 		app.GET("/", HomeHandler)
-		app.GET("/users", UsersHandler)
-		app.GET("/user/{id}", UserHandler)
+
+		app.GET("/api/users", ApiUsersHandler)
+		app.GET("/api/user/{id}", ApiUserHandler)
 
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
