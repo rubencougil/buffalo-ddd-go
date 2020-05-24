@@ -12,9 +12,10 @@ type PostgresRepository struct {
 	DB *pop.Connection
 }
 
-func (r PostgresRepository) Create(user User) error {
-	if err := r.DB.Save(models.User{
+func (r PostgresRepository) Create(user User) (err error) {
+	if err = r.DB.Create(&models.User{
 		ID:        user.ID,
+		Name:      user.Name,
 		CreatedAt: time.Time{},
 		UpdatedAt: time.Time{},
 	}); err != nil {
@@ -48,5 +49,3 @@ func (r PostgresRepository) GetAll() (users []*User, err error) {
 	}
 	return users, nil
 }
-
-

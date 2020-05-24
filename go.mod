@@ -9,7 +9,9 @@ require (
 	github.com/gobuffalo/buffalo-pop/v2 v2.0.6
 	github.com/gobuffalo/clara v0.10.1 // indirect
 	github.com/gobuffalo/envy v1.9.0
+	github.com/gobuffalo/events v1.4.1
 	github.com/gobuffalo/genny v0.6.0 // indirect
+	github.com/gobuffalo/logger v1.0.3
 	github.com/gobuffalo/mw-csrf v1.0.0
 	github.com/gobuffalo/mw-forcessl v0.0.0-20200131175327-94b2bd771862
 	github.com/gobuffalo/mw-i18n v1.1.0

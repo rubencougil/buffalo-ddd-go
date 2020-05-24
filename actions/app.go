@@ -4,7 +4,6 @@ import (
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/buffalo-pop/v2/pop/popmw"
 	"github.com/gobuffalo/envy"
-	csrf "github.com/gobuffalo/mw-csrf"
 	forcessl "github.com/gobuffalo/mw-forcessl"
 	i18n "github.com/gobuffalo/mw-i18n"
 	paramlogger "github.com/gobuffalo/mw-paramlogger"
@@ -45,10 +44,6 @@ func App() *buffalo.App {
 		// Log request parameters (filters apply).
 		app.Use(paramlogger.ParameterLogger)
 
-		// Protect against CSRF attacks. https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
-		// Remove to disable this.
-		app.Use(csrf.New)
-
 		// Wraps each request in a transaction.
 		//  c.Value("tx").(*pop.Connection)
 		// Remove to disable this.
@@ -59,8 +54,9 @@ func App() *buffalo.App {
 
 		app.GET("/", HomeHandler)
 
-		app.GET("/api/users", ApiUsersHandler)
-		app.GET("/api/user/{id}", ApiUserHandler)
+		app.GET("/api/users/", ApiUsersHandler)
+		app.GET("/api/users/{user_id}/", ApiUserHandler)
+		app.POST("/api/users/", ApiUserHandler)
 
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}

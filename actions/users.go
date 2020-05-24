@@ -13,7 +13,7 @@ func ApiUsersHandler(c buffalo.Context) error {
 	users, err := usersApp.GetAll()
 	if err != nil {
 		c.Logger().Error(err)
-		return c.Render(200, r.Plain(err.Error()))
+		return c.Render(500, r.Plain(err.Error()))
 	}
 	return c.Render(200, r.JSON(users))
 }
